@@ -1,25 +1,69 @@
-maxColumnSum:
- li a0, -10^9 # maxSum = -10^9
- li a1, -1    # maxColumn = -1
+    .section .data
+array:
+    .word 1, 2, 3, 4, 5, 6
+    .word 7, 8, 9, 10, 11, 12
+    .word 13, 14, 15, 16, 17, 18
+    .word 19, 20, 21, 22, 23, 24
+    .word 25, 26, 27, 28, 29, 30
+    .word 31, 32, 33, 34, 35, 36
 
- # iterate through each column of the array
- for(i = 0; i < N; i++):
-    li a2, 0    # tempSum = 0
+.section .text
+main:
+    # Set up stack and base pointers
+    addi sp, sp, -8
+    sw ra, 0(sp)
+    sw s0, 4(sp)
 
-    # iterate through each row of the current column
-    for(j = 0; j < M; j++):
-      # calculate the sum of the elements in the current column
-      lw a3, [x10 + 4*i] # a3 = arr[i][j]
-      add a2, a2, a3     # tempSum += a3
+    # Set initial max sum and max column index
+    li s0, -2147483648
+    li s1, -1
 
-    # compare tempSum with maxSum
-    blt a2, a0, end     # if(tempSum < maxSum) goto end
+    # Calculate the maximum column sum
+calculate_max_column_sum:
+    addi t0, x0, 0 # Column index
+    addi t1, x0, 0 # Sum of the column elements
 
-    # if tempSum is greater than maxSum, update maxSum with tempSum and maxColumn with the index of the current column
-    mv a0, a2            # maxSum = tempSum
-    mv a1, a4            # maxColumn = i
+calculate_column_sum:
+    addi t2, x0, 0 # Row index
 
- end:
- # return maxColumn
- mv a0, a1
- ret
+calculate_row_sum:
+    slli t3, t2, 5 # Multiply row index by 32 to get offset
+    add t3, t3, t0 # Add column index to get element index
+    slli t3, t3, 2 # Multiply element index by 4 to get byte offset
+    add t3, t3, array # Get address of the element
+    lw t4, 0(t3) # Load element value
+    add t1, t1, t4 # Add element value to the sum of the column elements
+
+    addi t2, t2, 1 # Increment row index
+    blt t2, x0, calculate_row_sum # Repeat if row index < N
+
+    # Check if the current column sum is greater than the max sum
+    bgt t1, s0, update_max_sum
+
+update_max_sum:
+    mv s0, t1 # Update max sum
+    mv s1, t0 # Update max column index
+
+    # Increment column index
+    addi t0, t0, 1
+
+    # Repeat for all columns
+    blt t0, x0, calculate_column_sum
+
+    # Print the max column sum and index
+    mv a0, s0
+    li a7, 1
+    ecall
+
+    mv a0, s1
+    li a7, 1
+    ecall
+
+    # Restore stack and base pointers
+    lw ra, 0(sp)
+    lw s0, 4(sp)
+    addi sp, sp, 8
+
+    # Exit the program
+    li a7, 10
+    ecall
