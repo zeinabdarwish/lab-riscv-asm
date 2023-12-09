@@ -36,7 +36,6 @@ This project involves finding the column in a matrix with the maximum sum of ele
 
 Файл дампа скомпилированного исполняемого файла:
 ```bash    
-   
      riscv64-unknown-elf-objdump -D max.elf > max.dump
 ```
 
