@@ -29,16 +29,17 @@ This project involves finding the column in a matrix with the maximum sum of ele
 
 ### Сборник
 
-Скомпилируйте код C с помощью компилятора RISC-V:
-
+Компиляция кода C с помощью компилятора RISC-V:
 ```bash
-riscv64-unknown-elf-gcc -march=rv32i -mabi=ilp32 max.c -o max.elf
+    riscv64-unknown-elf-gcc -march=rv32i -mabi=ilp32 max.c -o max.elf
+```
 
-### dump
-Создайте файл дампа из скомпилированного исполняемого файла:
-```bash
-riscv64-unknown-elf-objdump -D max.elf > max.dump
+Файл дампа скомпилированного исполняемого файла:
+```bash    
+   
+     riscv64-unknown-elf-objdump -D max.elf > max.dump
+```
 
-### Полученные результаты
+# Полученные результаты
 После запуска программ печатается столбец с максимальной суммой.
 
