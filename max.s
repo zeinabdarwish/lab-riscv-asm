@@ -14,9 +14,9 @@ result: .word 0
         .word 0
 
 .text
-.globl _start
 
-_start:
+
+main:
   la a2, N        # Load address of N
   la a3, M        # Load address of M
   la a4, matrix   # Load address of matrix
