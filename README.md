@@ -1,6 +1,6 @@
 
 
-# Алгоритм суммы столбцов матрицы
+# Matrix Column Sum Algorithm
 ## Overview
 
 This project involves finding the column in a matrix with the maximum sum of elements. The algorithm is implemented in both RISC-V assembly language and C programming language.
@@ -34,11 +34,11 @@ This project involves finding the column in a matrix with the maximum sum of ele
 ```bash
 riscv64-unknown-elf-gcc -march=rv32i -mabi=ilp32 max.c -o max.elf
 
-## dump
+### dump
 Создайте файл дампа из скомпилированного исполняемого файла:
 ```bash
 riscv64-unknown-elf-objdump -D max.elf > max.dump
 
-## Полученные результаты
+### Полученные результаты
 После запуска программ печатается столбец с максимальной суммой.
 
