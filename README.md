@@ -21,7 +21,13 @@ This project involves finding the column in a matrix with the maximum sum of ele
 
 ## Алгоритм
 
-Алгоритм перебирает каждый столбец матрицы, вычисляет сумму ее элементов и отслеживает столбец с максимальной суммой.
+- 1.Initialize a variable maxColumnSum to 0 to keep track of the maximum column sum.
+- 2.Initialize a variable maxColumnIndex to 0 to keep track of the index of the column with the maximum sum.
+- 3.For each column in the array:
+   - a. Initialize a variable currentColumnSum to 0 to calculate the sum of elements in the current column.
+   - b. For each element in the current column, add its value to currentColumnSum.
+   - c. If currentColumnSum is greater than maxColumnSum, update maxColumnSum and maxColumnIndex.
+- 4.The column with the maximum sum is stored in maxColumnIndex.
 
 ## Реализация C
 
