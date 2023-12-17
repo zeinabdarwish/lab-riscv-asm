@@ -78,7 +78,7 @@ print_message:
 
 print_space:
    addi a0, x0, 11   
-   addi a1, x0, 45   # ASCII code for minus (-)
+   addi a1, x0, 45   # ASCII code for (-)
    li a7, 11    
    ecall
    ret
